@@ -74,10 +74,15 @@ div {
     top: 1vh;
 }
 
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .add-remove-buttons {
     display: flex;
     flex-direction: row;
-    margin-top: 1vh;
+    margin: 1vh 1vw 0 0;
 }
 
 #add-button {
@@ -85,6 +90,12 @@ div {
     font-size: 3vh;
     padding: .5vh;
     justify-content: center;
+}
+
+.save-load-buttons {
+    display: flex;
+    flex-direction: row;
+    margin: 1vh 1vw 0 0;
 }
 
 .notes-list {
