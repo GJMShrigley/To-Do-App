@@ -98,6 +98,14 @@ div {
     margin: 1vh 1vw 0 0;
 }
 
+#load-input {
+    background-color: #fff;
+    border-radius: 8px;
+    min-height: 3vh;
+    max-width: 15.5vh;
+    border-style: outset;
+}
+
 .notes-list {
     display: flex;
     flex-direction: column;
