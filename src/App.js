@@ -83,6 +83,7 @@ function saveFile() {
   const notesText = JSON.stringify(NotesData);
   const file = new File([notesText], "Notes.txt", {type: "text/plain;charset=utf-8"});
   FileSaver.saveAs(file);
+  console.log(NotesData);
 }
 
 function loadFile(event) {
@@ -113,8 +114,8 @@ function loadFile(event) {
             key= {item.id}
             id= {item.id}
             remove={removeNote}
-            loadedText={item.text}
-            text={handleText}
+            text={item.text}
+            textChange={handleText}
             checked={handleCheck}
           />
         </div>

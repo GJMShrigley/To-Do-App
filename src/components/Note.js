@@ -12,30 +12,14 @@ export default function Note(props) {
     
 
     function setText(event) {
-        event.preventDefault();
         const newText = event.target.value;
-        const loadedText = formData.loadedText;
-        
-        if (loadedText != "") {
-            setFormData(prevFormData => {
-                return {
-                    ...prevFormData,
-                    text: loadedText,
-                    loadedText: "",
-                    
-                }
-            }); console.log(formData)
-        } else {
-            setFormData(prevFormData => {
-                return {
-                    ...prevFormData,
-                    text: newText
-                }
-            }); console.log(formData);
-            props.text(newText, props.id);
-        }
-
-
+        setFormData ( prevFormData => {
+            return {
+                ...prevFormData,
+                text: newText
+            }
+        }); 
+        props.textChange(newText, props.id)
     }
 
     function toggleEdit(event) {
@@ -55,7 +39,7 @@ export default function Note(props) {
                 ...prevFormData,
                 checked: prevFormData.checked === true ? false : true
             }
-        });
+        });console.log(formData);
         props.checked(props.id);
     }
 
