@@ -13,13 +13,7 @@ export default function App() {
 
   const [count, setCount] = React.useState(1);
 
-  const [NotesData, setNotesData] = React.useState([{
-    id: 0, 
-    index: 0,
-    position: `item 0`,
-    text:"",
-    checked: false,
-  }]) 
+  const [NotesData, setNotesData] = React.useState([]) 
 
 function addNote() {
 
@@ -27,8 +21,8 @@ function addNote() {
 
   setNotesData(prevState => {
     return [...prevState , { 
-      id: count, 
-      index: count,
+      id: NotesData.length + 1, 
+      index: NotesData.length,
       position: `item ${count}`,
       text:"",
       checked: false,
@@ -36,13 +30,12 @@ function addNote() {
   })
 }
 
-function removeNote(id) {
+function removeNote(noteIndex) {
   const items = NotesData;
-  const noteId = id;
 
-  if (items.length > 0) {
-    setNotesData(items.filter((item, index) => index !== noteId))
-    } 
+  setNotesData(items.filter((item, index) => index !== noteIndex ))
+  console.log(noteIndex, items)
+
   }
 
 function handleText(formText, id) {
@@ -61,12 +54,12 @@ function handleText(formText, id) {
 function handleCheck(id) {
   const NotesDataCopy = NotesData;
   const noteId = id;
-  
 
   for (let i = 0; i < NotesDataCopy.length; i++) {
     if (NotesDataCopy[i].id === noteId) {
       NotesDataCopy[i].checked = !NotesDataCopy[i].checked;
       setNotesData(NotesDataCopy);
+      console.log(NotesData)
     }
   }
 }
@@ -77,19 +70,21 @@ function handleOnDragEnd(result) {
   const [reorderedNotes] = NotesDataCopy.splice(result.source.index, 1); 
   NotesDataCopy.splice(result.destination.index, 0, reorderedNotes);
   setNotesData(NotesDataCopy);
+  console.log(NotesData, NotesDataCopy)
 }
 
 function saveFile() {
   const notesText = JSON.stringify(NotesData);
   const file = new File([notesText], "Notes.txt", {type: "text/plain;charset=utf-8"});
   FileSaver.saveAs(file);
-  console.log(NotesData);
 }
 
 function loadFile(event) {
   const files = event.target.files;
   const file = files[0];
   const reader = new FileReader();
+
+  setNotesData([])
 
   if (file.length > 1) {
     alert("Please select a single file to load");
@@ -113,6 +108,7 @@ function loadFile(event) {
           <Note
             key= {item.id}
             id= {item.id}
+            index= {item.index}
             remove={removeNote}
             text={item.text}
             textChange={handleText}
@@ -128,9 +124,9 @@ function loadFile(event) {
     <div>
       <Title />
       <div className="buttons-container">
-        <div className="add-remove-buttons">
+         <div className="add-remove-buttons">
           <div className="button" id="add-button" onClick={addNote}><BsPlusLg /></div>
-        </div> 
+        </div>  
         <div className="save-load-buttons">
           <div className="button" id="save-button" onClick={saveFile}><BiDownload /></div>
         </div>
