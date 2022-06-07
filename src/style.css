@@ -4,7 +4,7 @@
 }
 
 body {
-    background-color: #333;
+    background-image: url("./images/gold-marble.jpg") ;
 }
 
 div {
@@ -14,7 +14,7 @@ div {
 }
 
 .glass {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.3);
     padding: 1em;
     border-radius: 8px;
     z-index: 1;
@@ -40,36 +40,40 @@ div {
 }
 
 .title-form {
-    background-color: #333;
     display: flex;
-
     justify-content: center;
     align-items: flex-end;
     width: 100vw;
     height: 14vh;
     padding: 2vh;
-    border-bottom: solid 1px rgba(255,255,255,0.8) ;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.8);
 }
 
 .title-input {
     color: #fff;
-    height: 7vh;
-    max-width: 95%;
-    min-width: 50%;
+    height: 6vh;
+    width: 75vw;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 .title-text {
     color: #fff;
     display: flex;
-    height: 3vh;
-    max-width: 95%;
-    min-width: 50%;
+    height: 6vh;
     justify-content: center;
     align-items: center;
     margin: 0;
+    word-break: break-all;
+    width: 75vw;
+    overflow: hidden;
+    text-decoration: underline;
 }
 
-#title-button , #remove-button , #edit-button, #check-button {
+#title-button,
+#remove-button,
+#edit-button,
+#check-button {
     position: relative;
     top: 1vh;
 }
@@ -79,10 +83,14 @@ div {
     flex-direction: row;
 }
 
-.add-remove-buttons {
+.add-save-load-buttons {
     display: flex;
     flex-direction: row;
     margin: 1vh 1vw 0 0;
+}
+
+.list-buttons {
+    margin: 0 1vw;
 }
 
 #add-button {
@@ -92,43 +100,32 @@ div {
     justify-content: center;
 }
 
-.save-load-buttons {
-    display: flex;
-    flex-direction: row;
-    margin: 1vh 1vw 0 0;
-}
-
 #load-input {
-    background-color: #fff;
-    border-radius: 8px;
-    min-height: 3vh;
-    max-width: 15.5vh;
-    border-style: outset;
+    display: none;
 }
 
 .notes-list {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 200vh;
-    background-color: #111;
-    padding: 4vh;
+    height: 100%;
+    padding: 2vh;
 }
 
 .note-form {
     display: flex;
-    min-height: 10vh;
+    min-height: 15vh;
     min-width: 30vw;
-    max-width: 90vw;
+    width: 95vw;
     align-items: flex-end;
+    margin: .5vh;
 }
 
 #note-input {
     display: flex;
     color: #fff;
-    min-width: 50vh;
-    max-width: 100vw;
-    max-height: max-content;
+    width: 85vw;
+    min-height: 15vh;
     padding: 2vh;
     word-break: break-all;
 }
@@ -136,12 +133,13 @@ div {
 .note-text {
     display: flex;
     color: #fff;
-    min-width: 50vh;
-    min-height: 10vh;
-    max-width: 100vw;
-    max-height: 90vh;
+    min-height: 15vh;
     padding: 2vh;
-    /* word-break: break-all;
-    overflow: scroll; */
+    word-break: break-all;
+    overflow: hidden;
+    width: 85vw;
 }
 
+.note-buttons {
+    margin: 0 0 0 1vw;
+}

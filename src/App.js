@@ -7,6 +7,7 @@ import Note from "./components/Note";
 
 import { BsPlusLg } from "react-icons/bs";
 import { BiDownload } from "react-icons/bi";
+import { BiUpload } from "react-icons/bi";
 
 import './style.css';
 export default function App() {
@@ -34,7 +35,6 @@ function removeNote(noteIndex, noteId) {
 
   for (let i = 0; i < items.length; i++) {
     if (items[i].id === noteId) {
-      console.log(noteId)
      setNotesData(items.filter((item, itemIndex) => itemIndex !== noteIndex ))
     }
   }}
@@ -60,7 +60,6 @@ function handleCheck(id) {
     if (NotesDataCopy[i].id === noteId) {
       NotesDataCopy[i].checked = !NotesDataCopy[i].checked;
       setNotesData(NotesDataCopy);
-      console.log(NotesData)
     }
   }
 }
@@ -71,7 +70,6 @@ function handleOnDragEnd(result) {
   let [reorderedNotes] = NotesDataCopy.splice(result.source.index, 1); 
   NotesDataCopy.splice(result.destination.index, 0, reorderedNotes);
   setNotesData(NotesDataCopy);
-  console.log(result)
 }
 
 function saveFile() {
@@ -122,16 +120,15 @@ function loadFile(event) {
   }) 
   
   return (
-    <div>
+    <div className="main-container">
       <Title />
       <div className="buttons-container">
-         <div className="add-remove-buttons">
-          <div className="button" id="add-button" onClick={addNote}><BsPlusLg /></div>
-        </div>  
-        <div className="save-load-buttons">
-          <div className="button" id="save-button" onClick={saveFile}><BiDownload /></div>
+         <div className="add-save-load-buttons">
+         <div className="button , list-buttons" id="save-button" onClick={saveFile}><BiDownload /></div>
+          <div className="button , list-buttons" id="add-button" onClick={addNote}><BsPlusLg /></div>
+          <label className="button , list-buttons" for="load-input"><BiUpload /></label>
+          <input id="load-input" type="file" onChange={loadFile}></input>
         </div>
-        <input id="load-input" type="file" onChange={loadFile}></input>
       </div>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="droppable-notes">

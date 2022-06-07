@@ -36,6 +36,7 @@ export default function Title() {
                 type="text"
                 placeholder="Enter a Title"
                 name="title"
+                maxLength="75"
                 value={formData.title}
                 onChange={handleChange}
                 /> 
