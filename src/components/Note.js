@@ -40,7 +40,7 @@ export default function Note(props) {
                 ...prevFormData,
                 checked: prevFormData.checked === true ? false : true
             }
-        });console.log(formData.index);
+        });
         props.checked(props.id);
     }
 
@@ -60,7 +60,7 @@ export default function Note(props) {
                 <p className="note-text , glass" style={formData.checked === true ? {textDecoration: "line-through", color: "#aaa", fontWeight: "100", fontStyle: "italic"} : {}}>{formData.text}</p>}
                 <div className="button" id="edit-button" onClick={toggleEdit}>{formData.isEdit ? <BsCheck /> : <FiEdit /> }</div>
                 <div className="button" id="check-button" onClick={toggleChecked}> <MdChecklist /></div>
-                <div className="button" id="remove-button" onClick={()=>props.remove(props.index)}><BiMinus /></div>
+                <div className="button" id="remove-button" onClick={()=>props.remove(props.index, props.id)}><BiMinus /></div>
             </form>
     )
 }

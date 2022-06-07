@@ -22,7 +22,6 @@ function addNote() {
   setNotesData(prevState => {
     return [...prevState , { 
       id: NotesData.length + 1, 
-      index: NotesData.length,
       position: `item ${count}`,
       text:"",
       checked: false,
@@ -30,13 +29,15 @@ function addNote() {
   })
 }
 
-function removeNote(noteIndex) {
+function removeNote(noteIndex, noteId) {
   const items = NotesData;
 
-  setNotesData(items.filter((item, index) => index !== noteIndex ))
-  console.log(noteIndex, items)
-
-  }
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].id === noteId) {
+      console.log(noteId)
+     setNotesData(items.filter((item, itemIndex) => itemIndex !== noteIndex ))
+    }
+  }}
 
 function handleText(formText, id) {
   const NotesDataCopy = NotesData;
@@ -66,11 +67,11 @@ function handleCheck(id) {
 
 function handleOnDragEnd(result) {
   if (!result.destination) return;
-  const NotesDataCopy = Array.from(NotesData);
-  const [reorderedNotes] = NotesDataCopy.splice(result.source.index, 1); 
+  let NotesDataCopy = Array.from(NotesData);
+  let [reorderedNotes] = NotesDataCopy.splice(result.source.index, 1); 
   NotesDataCopy.splice(result.destination.index, 0, reorderedNotes);
   setNotesData(NotesDataCopy);
-  console.log(NotesData, NotesDataCopy)
+  console.log(result)
 }
 
 function saveFile() {
@@ -100,15 +101,15 @@ function loadFile(event) {
   reader.readAsText(file);
 }
 
-  const notes = NotesData.map(item => {
+  const notes = NotesData.map((item, index) => {
     return (
-      <Draggable key={item.id} draggableId={item.position} index={item.index}>
+      <Draggable key={item.id} draggableId={item.position} index={index}>
       {(provided) => (
         <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
           <Note
             key= {item.id}
             id= {item.id}
-            index= {item.index}
+            index= {index}
             remove={removeNote}
             text={item.text}
             textChange={handleText}
