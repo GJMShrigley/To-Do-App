@@ -10,6 +10,7 @@ import { BiDownload } from "react-icons/bi";
 import { BiUpload } from "react-icons/bi";
 
 import './style.css';
+import './help.css';
 export default function App() {
 
   const [count, setCount] = React.useState(1);
@@ -70,6 +71,7 @@ function handleOnDragEnd(result) {
   let [reorderedNotes] = NotesDataCopy.splice(result.source.index, 1); 
   NotesDataCopy.splice(result.destination.index, 0, reorderedNotes);
   setNotesData(NotesDataCopy);
+  console.log(NotesData);
 }
 
 function saveFile() {
@@ -124,9 +126,9 @@ function loadFile(event) {
       <Title />
       <div className="buttons-container">
          <div className="add-save-load-buttons">
-         <div className="button , list-buttons" id="save-button" onClick={saveFile}><BiDownload /></div>
-          <div className="button , list-buttons" id="add-button" onClick={addNote}><BsPlusLg /></div>
-          <label className="button , list-buttons" for="load-input"><BiUpload /></label>
+         <div className="button , list-buttons , tooltip" id="save-button" onClick={saveFile}><span class="tooltiptext">Save notes file</span><BiDownload /></div>
+          <div className="button , list-buttons , tooltip" id="add-button" onClick={addNote}><span class="tooltiptext">Add note</span><BsPlusLg /></div>
+          <label className="button , list-buttons , tooltip" for="load-input"><span class="tooltiptext">Load notes file</span><BiUpload /></label>
           <input id="load-input" type="file" onChange={loadFile}></input>
         </div>
       </div>
