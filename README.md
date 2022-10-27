@@ -40,7 +40,7 @@ To save a list, click on the left button beneath the title element (containing t
 
 To load a list, click on the right button beneath the title element (containing the up-pointing arrow) and select the desired file.
 
-## HOW IT WORDKS:
+## HOW IT WORKS:
 
 This project was designed for the purposes of teaching myself the fundamentals of React.js and as a result it is fairly straightforward in its functionality and structure. 
 
