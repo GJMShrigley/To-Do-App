@@ -1,104 +1,81 @@
 .help {
-    /* POSITION */
     position: absolute;
     top: 0;
-    /* BOX MODEL */
+
     width: 100vw;
-    height: 97vh;
-    /* LAYOUT */
+    height: 22rem;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* TYPOGRAPHY */
+
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
     color: #fff;
-    /* BACKGROUND */
+
     background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.7));
-    /* ANIMATIONS */
-    transform: translateY(-92vh);
+
+    transform: translateY(-19rem);
     transition: all .8s ease-in-out;
-    /* OTHER */
+
     overflow: hidden;
     z-index: 100;
 }
 
 .help:hover {
-    /* ANIMATIONS */
     transform: translateY(0);
 }
 
 .help__text {
-    /* BOX MODEL */
     width: 95%;
     height: auto;
     padding: 2vw;
-    /* LAYOUT */
+
     text-align: center;
-    /* TYPOGRAPHY */
+
     font-size: 2rem;
-}
 
-.help__tag {
-    /* POSITION */
-    position: relative;
-    bottom: 0vh;
-    /* BOX MODEL */
-    margin: 0;
-    padding: 0;
-    /* TYPOGRAPHY */
-    font-size: 2rem;
-}
-
-.commentary {
-    /* BOX MODEL */
-    margin: 2vw;
-    width: 90vw;
-    height: 70vh;
-    /* OTHER */
-    overflow: hidden;
-}
-
-.commentary__text {
-    /* BOX MODEL */
-    min-height: 34vh;
-    max-height:  49vh;
-    /* TYPOGRAPHY */
-    font-size: 1.4rem;
-    /* OTHER */
     overflow: auto;
 }
 
-.commentary__heading {
-    /* LAYOUT */
-    text-align: center;
-    /* TYPOGRAPHY */
-    font-size: 3rem;
+.help__tag {
+    position: fixed;
+    bottom: 0;
+
+    margin-bottom: 0;
+    padding: 0;
+
+    font-size: 2rem;
 }
 
 .tooltip {
     position: relative;
-    display: inline-block;
+
     border-bottom: 1px dotted black;
+
+    display: inline-block;
   }
   
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    font-size: 1rem;
-    width: 120px;
+.tooltip .tooltip__text {
+    position: absolute;
     bottom: 100%;
     left: 50%;
+
     margin-left: -60px;
-    position: absolute;
+    border-radius: 6px;
+    width: 120px;
+    padding: 5px 0;    
+    
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+
+    background-color: black;
+
+    visibility: hidden;
     z-index: 1;
   }
   
-  .tooltip:hover .tooltiptext {
+.tooltip:hover .tooltip__text {
     visibility: visible;
   }

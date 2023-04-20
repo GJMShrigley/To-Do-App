@@ -20,65 +20,7 @@
       <br><br>
       Hover over the buttons for more information. Drag your notes to reorder them.
     </p>
-    <div class="commentary">
-      <h1 class="commentary__heading">&lt;&lt;DEVELOPER COMMENTARY&gt;&gt;</h1>
-      <p class="commentary__text">
-        I designed this project for the purposes of teaching myself the fundamentals of React.js.
-        Designing and building it came with a number of unique challenges, not least of which was
-        figuring out the correct method of passing data between components.
-        <br><br>
-        One of the advantages of React is how it handles rendering and re-rendering its elements. by 
-        only re-rendering those elements that require it (typically those which have changed in some 
-        way) React is able to provide dynamic and interactive elements without being too intensive on 
-        the browser's resources. It is able to do this by recording the state of its elements in a form 
-        named, appropriately, 'state'. 
-        <br><br>
-        The app is composed of two components,'Title' and a 'Notes'. React dynamically inserts 
-        these components into the HTML as needed. Notes are stored as an object in an array within 
-        a React state. Every time the user adds a note using the + button, a new object is added to 
-        this array and React will re-render the screen. React will run through the array of objects and
-         render a new note element for each.
-        <br><br>
-        Each object within the array contains a number of properties that dictate how it appears on the 
-        screen. This includes the text contents, whether or not the note has been 'checked' (as a 
-        boolean), an ID (as an integer), and a position (as a string).
-        <br><br>
-        The 'React-beautiful-dnd' library allows notes to be reordered on the list by setting a 
-        drag and drop context. Dragging a note anywhere inside this area will update the array by 
-        removing the relevant note from its original position and returning it at the new destination. 
-        Each time a note is created, it is wrapped inside a 'draggable' context which keeps track of its
-        ID and position properties, and its index within the array. 
-        <br><br>
-        Both the Title and Note components contain buttons which toggle various effects and also a text 
-        field. Typically React is only able to pass data in a single direction, from parent to child.  
-        While it would be possible to allow each individual note to handle the contents of its text field 
-        and other properties, this would not be good practice as it could lead to conflicts between the 
-        data contained in the original array and the data of each note element.
-        <br><br>
-        This made it necessary to use a slightly more complex method of dealing with user input to the 
-        interactive parts of each component. Instead of passing the data down to the individual note element 
-        directly, I instead passed a reference to a function. Now interacting with the buttons or text field 
-        of the note element will trigger the function and update the original data in the original array 
-        of objects directly. 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-      </p>
-    </div>
-    <p class="help__tag">HELP</p>
+    <p class="help__tag">HOVER HERE FOR HELP</p>
   </div>
   <div id="root"></div>
 </body>

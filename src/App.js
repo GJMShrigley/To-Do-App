@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import FileSaver from 'file-saver';
 import Title from "./components/Title";
@@ -10,9 +10,11 @@ import './style.css';
 import './help.css';
 export default function App() {
 
-const [count, setCount] = React.useState(1); 
-const [notesData, setNotesData] = React.useState([]); 
+const [count, setCount] = useState(1); //State containing an int used to provide each note with a unique key
+const [notesData, setNotesData] = useState([]); //State containing the list of note Objects
 
+
+// Create new note and add to State
 function addNote() {
   setCount(prevCount => prevCount + 1);
 
@@ -26,6 +28,7 @@ function addNote() {
   });
 }
 
+//Remove note from State
 function removeNote(noteIndex, noteId) {
   const items = notesData;
 
@@ -35,6 +38,7 @@ function removeNote(noteIndex, noteId) {
     }
   }}
 
+//Handle changes to each note's text in State received from individual Note Components  
 function handleText(formText, id) {
   const notesDataCopy = notesData;
   const textData = formText;
@@ -48,6 +52,7 @@ function handleText(formText, id) {
   }
 }
 
+//Handle changes to each note's 'checked' status in State received from individual Note Components 
 function handleCheck(id) {
   const notesDataCopy = notesData;
   const noteId = id;
@@ -60,6 +65,7 @@ function handleCheck(id) {
   }
 }
 
+//Handle reordering of notes in State
 function handleOnDragEnd(result) {
   if (!result.destination) return;
   let notesDataCopy = Array.from(notesData);
@@ -68,23 +74,27 @@ function handleOnDragEnd(result) {
   setNotesData(notesDataCopy);
 }
 
+//Handle saving of current State to a JSON file in the user's device
 function saveFile() {
   const notesText = JSON.stringify(notesData);
   const file = new File([notesText], "Notes.txt", {type: "text/plain;charset=utf-8"});
   FileSaver.saveAs(file);
 }
 
+//Handle loading of an existing JSON file from the user's device
 function loadFile(event) {
   const files = event.target.files;
   const file = files[0];
   const reader = new FileReader();
   setNotesData([]);
 
+  //Return an error if the user selects more than a single file to load
   if (file.length > 1) {
     alert("Please select a single file to load");
     return;
   }
 
+  //Load the file from the user's device and parse the contained JSON text, commit the resulting data to State
   reader.addEventListener("load", () => {
    const loadedFile = JSON.parse(reader.result);
    setNotesData(loadedFile);
@@ -93,6 +103,7 @@ function loadFile(event) {
   reader.readAsText(file);
 }
 
+//Render the contents of State as a list of draggable notes
   const notes = notesData.map((item, index) => {
     return (
       <Draggable key={item.id} draggableId={item.position} index={index}>
@@ -114,32 +125,32 @@ function loadFile(event) {
   }) 
   
   return (
-    <div className = "main-container">
+    <div className = "main__container">
       <Title />
-      <div className="buttons-container">
-        <div className="add-save-load-buttons">
-        <div className="button , list-buttons , tooltip" id="save-button" onClick={saveFile}>
-          <span className="tooltiptext">Save notes file</span>
+      <div className="buttons__container">
+        <div className="add-save-load__buttons">
+        <div className="button , list__buttons , tooltip" id="save__button" onClick={saveFile}>
+          <span className="tooltip__text">Save notes file</span>
           <BiDownload />
         </div>
-        <div className="button , list-buttons , tooltip" id="add-button" onClick={addNote}>
-            <span className="tooltiptext">Add note</span>
+        <div className="button , list__buttons , tooltip" id="add__button" onClick={addNote}>
+            <span className="tooltip__text">Add note</span>
               <BsPlusLg />
         </div>
-         <label className="button , list-buttons , tooltip" for="load-input">
-            <span className="tooltiptext">Load notes file</span>
+         <label className="button , list__buttons , tooltip" id="load__button" for="load__input">
+            <span className="tooltip__text">Load notes file</span>
             <BiUpload />
          </label>
-         <input id="load-input" type="file" onChange={loadFile}></input>
+         <input id="load__input" type="file" onChange={loadFile}></input>
         </div>
       </div>
         <DragDropContext onDragEnd={handleOnDragEnd}>
-          <Droppable droppableId="droppable-notes">
+          <Droppable droppableId="droppable__notes">
             {(provided) => (
-              <section className="notes-list" {...provided.droppableProps} ref={provided.innerRef}>
+              <div className="notes__list" {...provided.droppableProps} ref={provided.innerRef}>
                 {notes}
                 {provided.placeholder}
-              </section>
+              </div>
             )}
           </Droppable>
         </DragDropContext> 
