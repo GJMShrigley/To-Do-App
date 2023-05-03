@@ -66,4 +66,4 @@ FileSaver courtesy of Eligrey (https://github.com/eligrey/FileSaver.js)
 
 ## LINKS:
 
-For a live example, please visit my online portfolio (https://react-to-do-note.netlify.app/)
+For a live example, please visit my online portfolio (https://gs-todo.netlify.app/)
