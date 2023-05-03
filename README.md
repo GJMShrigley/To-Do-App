@@ -6,7 +6,7 @@ A React-based to-do list. Add items to your list of notes, mark them done, delet
 
 To run the app locally from your device, in the project directory, run the command `npm run build`.
 
-Alternatively, see the app running live at: https://react-to-do-note.netlify.app/
+Alternatively, see the app running live at: (https://gs-todo.netlify.app/)
 
 ### Entering a title
 
